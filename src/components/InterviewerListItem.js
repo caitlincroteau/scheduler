@@ -9,7 +9,7 @@ export default function(props) {
   });
 
   return(
-    <li className={listClass} onClick={() => props.setInterviewer(props.id)} selected={props.selected}>
+    <li className={listClass} onClick={() => props.setInterviewer(props.id)}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
@@ -18,6 +18,5 @@ export default function(props) {
       {props.selected && props.name}
     </li>
   );
-
+  
 }
-//is putting selected={props.selected} in the li doubling up on work? check this also in daylistitem!
