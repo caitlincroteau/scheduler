@@ -13,10 +13,10 @@ export default function InterviewerList(props) {
         selected={interviewer.id === props.interviewer}
         setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
-  );
-});
+    );
+  });
 
-  return(
+  return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">
         Interviewer

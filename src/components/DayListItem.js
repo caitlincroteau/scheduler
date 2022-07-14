@@ -27,9 +27,11 @@ export default function DayListItem(props) {
   });
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={dayClass}>
+    <li onClick={() => props.setDay(props.name)} className={dayClass} selected={props.selected}>
       <h2 className="text--regular">{props.name}</h2> 
       <h3 className="text--light">{spotsRemaining}</h3>
     </li>
   );
 }
+
+//does props.selected need to be there??
