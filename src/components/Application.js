@@ -7,24 +7,6 @@ import "components/Appointment";
 import Appointment from "components/Appointment";
 
 
-// const days = [
-//   {
-//     id: 1,
-//     name: "Monday",
-//     spots: 2,
-//   },
-//   {
-//     id: 2,
-//     name: "Tuesday",
-//     spots: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Wednesday",
-//     spots: 0,
-//   },
-// ];
-
 const appointments = {
   "1": {
     id: 1,
@@ -71,8 +53,7 @@ export default function Application(props) {
 
   useEffect(() => {
     axios.get("/api/days").then(response => {
-      setDays([...response.data.days]);
-      console.log(response)
+      setDays([...response.data]);
     });
   }, []);
 
@@ -84,7 +65,6 @@ export default function Application(props) {
       />
     );
   });
-
 
 
   return (
