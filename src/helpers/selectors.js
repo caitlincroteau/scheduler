@@ -27,3 +27,26 @@ const getAppointmentIds = function(state, day) {
   return appointmentIds;
 }
 
+export function getInterview(state, interview) {
+  //checks if interview exists
+  if (!interview) {
+    return null;
+  }
+
+  //takes in object that contains an interviewer
+  const interviewObj = {};
+
+  //set student key's value in interviewObj
+  interviewObj.student = interview.student;
+
+  //get interviewer id from state.appointments.interview
+  const interviewerId = interview.interviewer; 
+
+  //look up the interviewer data with the interviewerId
+  const interviewerData = state.interviewers[interviewerId];
+
+  //set interviewer key's value in interviewObj
+  interviewObj.interviewer = interviewerData;
+
+  return interviewObj;
+}
