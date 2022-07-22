@@ -76,10 +76,13 @@ export default function Application(props) {
     });
   }, []);
 
+  //use getAppointments selector function
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentsList = dailyAppointments.map(appointment => {
+    //use getInterview selector function
     const interview = getInterview(state, appointment.interview);
+    console.log(interview)
 
     return (
       <Appointment
