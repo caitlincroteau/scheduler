@@ -71,7 +71,7 @@ export default function Application(props) {
       axios.get("/api/appointments"),
       axios.get("/api/interviewers")
     ]).then((all) => {
-      console.log('interviewers', all[2].data)
+      // console.log('interviewers', all[2].data)
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     });
   }, []);
@@ -82,7 +82,7 @@ export default function Application(props) {
   const appointmentsList = dailyAppointments.map(appointment => {
     //use getInterview selector function
     const interview = getInterview(state, appointment.interview);
-    console.log(interview)
+    // console.log(interview)
 
     return (
       <Appointment
