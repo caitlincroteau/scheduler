@@ -6,7 +6,7 @@ import DayList from "./DayList";
 import "components/Appointment";
 import Appointment from "components/Appointment";
 
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 // const appointments = {
@@ -76,11 +76,16 @@ export default function Application(props) {
     });
   }, []);
 
-  //use getAppointments selector function
+  //use getAppointments selector function to get array of appointment objects for day argument
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // console.log("daily appointments", dailyAppointments)
+
+  //get an array of interveiwer objects for each day argument
+  const interviewersList = getInterviewersForDay(state, state.day);
+  // console.log("interviewers list", interviewersList);
 
   const appointmentsList = dailyAppointments.map(appointment => {
-    //use getInterview selector function
+    //use getInterview selector function to get interview object inside each appointment object
     const interview = getInterview(state, appointment.interview);
     // console.log(interview)
 
@@ -90,6 +95,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewersList}
       />
     );
   });
