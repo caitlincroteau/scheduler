@@ -17,8 +17,14 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    bookInterview(id, interview);
-    transition(SHOW);
+    bookInterview(id, interview)
+      // .then(() => {
+      //   transition(SHOW);
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // })
+    
   }
 
   const EMPTY = "EMPTY";
