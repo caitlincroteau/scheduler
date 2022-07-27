@@ -19,14 +19,13 @@ export default function Appointment(props) {
       interviewer
     };
 
-    // transition(SAVING);
-    //uncomment this when transition(SHOW) solved
+    transition(SAVING);
 
     bookInterview(id, interview)
-    //transition(SHOW);
+    .then(() => transition(SHOW));
+
   }
   
-
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";

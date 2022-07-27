@@ -51,13 +51,14 @@ export default function Application(props) {
 
     const url = `/api/appointments/${id}`
 
-    axios
+    //return the promise
+    return axios
       .put(url, appointment)
       .then(response => {
         console.log('response', response)
         setState({...state, appointments});
         console.log("updated appointments", state.appointments)
-        return
+        
       })
       .catch(error => {
         console.log(error.message);
