@@ -11,13 +11,14 @@ export default function Appointment(props) {
 
   const { id, time, interview, interviewers, bookInterview } = props;
 
-  //create new interview object
+  //create new interview object and currently logs
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
     bookInterview(id, interview);
+    transition(SHOW);
   }
 
   const EMPTY = "EMPTY";

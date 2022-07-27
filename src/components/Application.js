@@ -35,6 +35,20 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
     console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({...state, appointments});
+    //must do ...state first in order to keep the previous state info eg day, days, interviewers
+    //and then the passed 'appointments' overwrites the appointments currently in state.appointments
+    //if you don't do ...state, you will override the rest of the data in state and state will
+    //only contain the new appointments object
   }
  
   //use getAppointments selector function to get array of appointment objects for day argument

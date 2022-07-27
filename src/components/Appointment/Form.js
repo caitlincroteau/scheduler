@@ -24,7 +24,7 @@ export default function Form(props) {
 
   //for save button
   const save = function () {
-    //save current student and interviewer
+    //creates new interview object and books the interview (index.js)
     onSave(student, interviewer);
   }
 
