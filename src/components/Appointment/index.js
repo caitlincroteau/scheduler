@@ -10,7 +10,7 @@ import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
 
-  const { id, time, interview, interviewers, bookInterview } = props;
+  const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
 
   //create new interview object and update db and state
   function save(name, interviewer) {
@@ -25,11 +25,21 @@ export default function Appointment(props) {
     .then(() => transition(SHOW));
 
   }
+
+  //delete interview
+  function cancel(id) {
+    // transition(DELETING);
+    console.log('id in index', id)
+    cancelInterview(id)
+    .then(() => transition(EMPTY));
+
+  }
   
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const SAVING ="SAVING";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -49,7 +59,9 @@ export default function Appointment(props) {
         {mode === SHOW && (
           <Show
             student={interview.student}
-            interviewer={interview.interviewer}  
+            interviewer={interview.interviewer}
+            onDelete={cancel}
+            // onEdit="editing"
           />
         )}
 
@@ -63,7 +75,13 @@ export default function Appointment(props) {
 
         {mode === SAVING && (
           <Status
-            message="Saving."
+            message="Saving"
+          />
+        )}
+
+        {mode === DELETING && (
+          <Status
+            message="Deleting"
           />
         )}
       </Fragment>  

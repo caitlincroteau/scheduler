@@ -57,8 +57,36 @@ export default function Application(props) {
       .then(response => {
         console.log('response', response)
         setState({...state, appointments});
-        console.log("updated appointments", state.appointments)
-        
+        console.log("updated appointments", state.appointments) 
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }
+
+  function cancelInterview(id) {
+    console.log("id in app.js", id)
+    //create new appointment object, copy data from that appointment in state, set the new interview to null
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    //create new appointments object, copy data from appointments in state, update the appointment id with new the appointment data
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    const url = `/api/appointments/${id}`
+
+    //return the promise
+    return axios
+      .delete(url)
+      .then(response => {
+        console.log('reponse', response);
+        //to setState, copy all existing state data with spread, then replace appointments object with new appointments object
+        setState({...state, appointments});
       })
       .catch(error => {
         console.log(error.message);
@@ -88,6 +116,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewersList}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
