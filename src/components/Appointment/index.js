@@ -9,18 +9,29 @@ import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
 
+  const { id, time, interview, interviewers, bookInterview } = props;
+
+  //create new interview object
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    bookInterview(id, interview);
+  }
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE"
 
   const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
+    interview ? SHOW : EMPTY
   );
   
   return (
     <article className="appointment">
       <Header
-        time={props.time}
+        time={time}
       />
       <Fragment>
         {mode === EMPTY && (
@@ -30,15 +41,15 @@ export default function Appointment(props) {
 
         {mode === SHOW && (
           <Show
-            student={props.interview.student}
-            interviewer={props.interview.interviewer}  
+            student={interview.student}
+            interviewer={interview.interviewer}  
           />
         )}
 
         {mode === CREATE && (
           <Form
-            interviewers = {props.interviewers}
-            onSave={() => console.log("onSave")}
+            interviewers = {interviewers}
+            onSave={save}
             onCancel={() => {back()}}
           />
         )}

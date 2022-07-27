@@ -4,22 +4,28 @@ import InterviewerList from "components/InterviewerList";
 
 export default function Form(props) {
 
+  const { id, time, interview, interviewers, bookInterview, onSave, onCancel }= props;
+
+  //state
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  //for cancel button/function
   const reset = function() {
     setStudent("");
     setInterviewer(null);
   }
 
+  //for cancel button
   const cancel = function() {
     reset();
-    props.onCancel();
+    onCancel();
   }
 
+  //for save button
   const save = function () {
-    props.onSave();
-    setInterviewer(interviewer.id);
+    //save current student and interviewer
+    onSave(student, interviewer);
   }
 
   return(
@@ -37,9 +43,9 @@ export default function Form(props) {
           />
         </form>
         <InterviewerList
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           value={interviewer}
-          onClick={(event) => setInterviewer(event)}
+          onClick={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
