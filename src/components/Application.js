@@ -44,24 +44,24 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    
     //see setState below: we must do ...state first in order to keep the previous state info eg day, days, interviewers
     //and then the passed 'appointments' overwrites the appointments currently in state.appointments
     //if you don't do ...state, you will override the rest of the data in state and state will
     //only contain the new appointments object
-    const url = `/api/appointments/${id}`
-    console.log(url)
 
-    axios.put(url, interview)
+    const url = `/api/appointments/${id}`
+
+    axios
+      .put(url, appointment)
       .then(response => {
-        console.log(response.data)
-        // setState({...state, appointments});
+        console.log('response', response)
+        setState({...state, appointments});
+        console.log("updated appointments", state.appointments)
+        return
       })
-      .then()
       .catch(error => {
         console.log(error.message);
       });
-
   }
  
   //use getAppointments selector function to get array of appointment objects for day argument

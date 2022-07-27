@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import 'components/Appointment/styles.scss';
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
 
@@ -11,25 +12,25 @@ export default function Appointment(props) {
 
   const { id, time, interview, interviewers, bookInterview } = props;
 
-  //create new interview object and currently logs
+  //create new interview object and update db and state
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
+
+    // transition(SAVING);
+    //uncomment this when transition(SHOW) solved
+
     bookInterview(id, interview)
-      // .then(() => {
-      //   transition(SHOW);
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // })
-    
+    //transition(SHOW);
   }
+  
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
-  const CREATE = "CREATE"
+  const CREATE = "CREATE";
+  const SAVING ="SAVING";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -60,8 +61,13 @@ export default function Appointment(props) {
             onCancel={() => {back()}}
           />
         )}
+
+        {mode === SAVING && (
+          <Status
+            message="Saving."
+          />
+        )}
       </Fragment>  
     </article>
   );
 }
-
