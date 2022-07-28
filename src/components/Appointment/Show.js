@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Show(props) {
 
-  const { id, student, interviewer, onEdit, onDelete } = props;
+  const { student, interviewer, onEdit, onDelete } = props;
 
 
   //for delete button

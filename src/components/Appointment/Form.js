@@ -4,11 +4,13 @@ import InterviewerList from "components/InterviewerList";
 
 export default function Form(props) {
 
-  const { id, time, interview, interviewers, bookInterview, onSave, onCancel }= props;
+  const { interviewers, onSave, onCancel } = props;
 
   //state
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
+  console.log('interviewer on edit', interviewer)
 
   //for cancel button/function
   const reset = function() {
