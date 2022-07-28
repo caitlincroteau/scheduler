@@ -38,13 +38,11 @@ export default function Appointment(props) {
 
   //delete interview
   function cancel() {
-    
     transition(DELETING);
     console.log('id in index', id)
 
     cancelInterview(id)
     .then(() => transition(EMPTY));
-
   }
   
 
@@ -63,7 +61,7 @@ export default function Appointment(props) {
           <Show
             student={interview.student}
             interviewer={interview.interviewer}
-            onDelete={cancel}
+            onDelete={() => {transition(CONFIRM)}}
             // onEdit="editing"
           />
         )}
@@ -90,6 +88,8 @@ export default function Appointment(props) {
 
         {mode === CONFIRM && (
           <Confirm 
+            onConfirm={cancel}
+            onCancel={() => {back()}}
           />
         )}
       </Fragment>  
