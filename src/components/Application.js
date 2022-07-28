@@ -58,9 +58,6 @@ export default function Application(props) {
         console.log('response', response)
         setState({...state, appointments});
         console.log("updated appointments", state.appointments) 
-      })
-      .catch(error => {
-        console.log(error.message);
       });
   }
 
@@ -87,9 +84,6 @@ export default function Application(props) {
         console.log('reponse', response);
         //to setState, copy all existing state data with spread, then replace appointments object with new appointments object
         setState({...state, appointments});
-      })
-      .catch(error => {
-        console.log(error.message);
       });
   }
  
