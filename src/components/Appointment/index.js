@@ -5,12 +5,23 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
+import Confirm from "./Confirm";
 import useVisualMode from "hooks/useVisualMode";
 
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const CREATE = "CREATE";
+const SAVING = "SAVING";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM"
 
 export default function Appointment(props) {
 
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
+
+  const { mode, transition, back } = useVisualMode(
+    interview ? SHOW : EMPTY
+  );
 
   //create new interview object and update db and state
   function save(name, interviewer) {
@@ -23,28 +34,20 @@ export default function Appointment(props) {
 
     bookInterview(id, interview)
     .then(() => transition(SHOW));
-
   }
 
   //delete interview
-  function cancel(id) {
-    // transition(DELETING);
+  function cancel() {
+    
+    transition(DELETING);
     console.log('id in index', id)
+
     cancelInterview(id)
     .then(() => transition(EMPTY));
 
   }
   
-  const EMPTY = "EMPTY";
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const SAVING = "SAVING";
-  const DELETING = "DELETING";
 
-  const { mode, transition, back } = useVisualMode(
-    interview ? SHOW : EMPTY
-  );
-  
   return (
     <article className="appointment">
       <Header
@@ -82,6 +85,11 @@ export default function Appointment(props) {
         {mode === DELETING && (
           <Status
             message="Deleting"
+          />
+        )}
+
+        {mode === CONFIRM && (
+          <Confirm 
           />
         )}
       </Fragment>  

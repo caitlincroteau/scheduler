@@ -7,7 +7,7 @@ export default function Show(props) {
 
   //for delete button
   const cancel = function() {
-    onDelete(id);
+    onDelete();
   }
 
   return (
@@ -31,7 +31,7 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick={cancel}
+            onClick={onDelete}
           />
         </section>
       </section>
