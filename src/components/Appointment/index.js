@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import 'components/Appointment/styles.scss';
 import Header from "./Header";
 import Show from "./Show";
@@ -20,13 +20,14 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-
+  
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
 
+  // console.log("interviewer", interview.interviewer.id)
   //create new interview object and update db and state
   function save(name, interviewer) {
     const interview = {
@@ -51,11 +52,11 @@ export default function Appointment(props) {
     .catch(error => transition(ERROR_DELETE, true));
   }
 
-  function edit() {
-    transition(EDIT)
-    // console.log('interviewers', interviewers)
-    // console.log('interview', interview.interviewer)
-  }
+  // function edit() {
+  //   transition(EDIT)
+  //   // console.log('interviewers', interviewers)
+  //   // console.log('interview', interview.interviewer)
+  // }
 
   
 
@@ -75,7 +76,7 @@ export default function Appointment(props) {
             student={interview.student}
             interviewer={interview.interviewer}
             onDelete={() => {transition(CONFIRM)}}
-            onEdit={edit}
+            onEdit={() => {transition(EDIT)}}
           />
         )}
 
@@ -91,7 +92,7 @@ export default function Appointment(props) {
           <Form
             student={interview.student}
             interviewers={interviewers}
-            interviewer={interview.interviewer}
+            interviewer={interview.interviewer.id}
             onSave={save}
             onCancel={() => {back()}}
           />

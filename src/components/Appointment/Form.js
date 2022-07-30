@@ -47,7 +47,7 @@ export default function Form(props) {
         <InterviewerList
           interviewers={interviewers}
           value={interviewer}
-          onClick={setInterviewer}
+          onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">

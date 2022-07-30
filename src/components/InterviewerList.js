@@ -11,7 +11,7 @@ export default function InterviewerList(props) {
         name={interviewer.name}
         avatar={interviewer.avatar}
         selected={interviewer.id === props.value}
-        setInterviewer={() => props.onClick(interviewer.id)}
+        setInterviewer={() => props.onChange(interviewer.id)}
         // are 'selected' and 'setinterviwer' correct?
       />
     );
