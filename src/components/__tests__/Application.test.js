@@ -21,7 +21,7 @@ describe("Application", () => {
   
   
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { container } = render(<Application />);
+    const { container, debug } = render(<Application />);
     // console.log(container);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -41,6 +41,8 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
     console.log(prettyDOM(appointment));
+
+    debug()
 
     
 
