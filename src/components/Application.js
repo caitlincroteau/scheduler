@@ -27,7 +27,7 @@ export default function Application(props) {
   const appointmentsList = dailyAppointments.map(appointment => {
     //use getInterview selector function to get interview object inside each appointment object
     const interview = getInterview(state, appointment.interview);
-    console.log("interview", interview)
+    // console.log("interview", interview)
 
     return (
       <Appointment
