@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, waitForElementToBeRemoved, getByPlaceholderText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, waitForElementToBeRemoved, queryByText, getByPlaceholderText } from "@testing-library/react";
 // jest.mock("axios");
 import Application from "components/Application";
 
@@ -22,14 +22,11 @@ describe("Application", () => {
   
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     const { container, debug } = render(<Application />);
-    // console.log(container);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    // console.log(prettyDOM(container));
 
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
-    // console.log(prettyDOM(appointment));
 
     fireEvent.click(getByAltText(appointment, "Add"));
    
@@ -40,22 +37,15 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
 
     fireEvent.click(getByText(appointment, "Save"));
-    console.log(prettyDOM(appointment));
+    
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
-    // await waitForElementToBeRemoved(() => getByText(appointment, "Saving"))
-
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
-   
 
-    console.log("debugging")
-    debug()
+    const dayNodes = getAllByTestId(container, "day");
+    const day = dayNodes.find(day => queryByText(day, "Monday"))
 
-    
-    
-
-    
-
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument(); 
   
   });
 })
@@ -72,4 +62,11 @@ it("changes the schedule when a new day is selected", async () => {
   fireEvent.click(getByText("Tuesday"));
 
   expect(getByText("Leopold Silvers")).toBeInTheDocument();
-});*/
+});
+
+
+this is a similar check
+
+    await waitForElementToBeRemoved(() => getByText(appointment, "Saving"))
+
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));*/
