@@ -20,7 +20,7 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
   const setDays = days => setState(prev => ({ ...prev, days }));
 
-  console.log("spots at start", state.days)
+  // console.log("spots at start", state.days)
 
   useEffect(() => {
     Promise.all([
@@ -28,7 +28,7 @@ export default function useApplicationData() {
       axios.get("/api/appointments"),
       axios.get("/api/interviewers")
     ]).then((all) => {
-      console.log('appointments', all[1].data)
+      // console.log('appointments', all[1].data)
       // console.log("spots at start", all[0].data)
       // console.log("state before get", state)
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
@@ -41,28 +41,28 @@ export default function useApplicationData() {
     const newDays = [
       ...state.days
     ]
-    console.log("days in update spots before", newDays)
+    // console.log("days in update spots before", newDays)
 
     //loop through days array to find day object that contains target appointment id
     for (const d of newDays) {
       //Book Interview: when you find the day with target appointment id, subtract one from remaining spots
       if (d.appointments.includes(id) && addition) {
         d.spots = d.spots - 1;
-        console.log("found it - days at d after", d)
+        // console.log("found it - days at d after", d)
       }
       //Cancel Interview: when you find the day with target appointment id, add one to remaining spots
       if (d.appointments.includes(id) && !addition) {
         d.spots = d.spots + 1;
-        console.log("found it - days at d after", d)
+        // console.log("found it - days at d after", d)
       }  
     }
-      console.log("days after", newDays)
+      // console.log("days after", newDays)
     return newDays;
   }
 
 
   function bookInterview(id, interview) {
-    console.log("id", id, " interview", interview);
+    // console.log("id", id, " interview", interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -73,7 +73,7 @@ export default function useApplicationData() {
     };
 
     const days = updateSpots(id, true);
-    console.log("days in book interview", days)
+    // console.log("days in book interview", days)
 
     //see setState below: we must do ...state first in order to keep the previous state info eg day, days, interviewers
     //and then the passed 'appointments' overwrites the appointments currently in state.appointments
@@ -86,7 +86,7 @@ export default function useApplicationData() {
     return axios
       .put(url, appointment)
       .then(response => {
-        console.log('response', response)
+        // console.log('response', response)
         setState({...state, appointments, days});
         // console.log("updated appointments, days", state.appointments, state.days)
         
@@ -94,7 +94,7 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
-    console.log("id in app.js", id)
+    // console.log("id in app.js", id)
     //create new appointment object, copy data from that appointment in state, set the new interview to null
     const appointment = {
       ...state.appointments[id],
@@ -115,7 +115,7 @@ export default function useApplicationData() {
     return axios
       .delete(url)
       .then(response => {
-        console.log('reponse', response);
+        // console.log('reponse', response);
         //to setState, copy all existing state data with spread, then replace appointments object with new appointments object
         setState({...state, appointments, days});
       });

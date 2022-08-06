@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, waitForElementToBeRemoved, getByPlaceholderText } from "@testing-library/react";
 // jest.mock("axios");
 import Application from "components/Application";
 
@@ -41,9 +41,17 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
     console.log(prettyDOM(appointment));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
+    // await waitForElementToBeRemoved(() => getByText(appointment, "Saving"))
+
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+   
+
+    console.log("debugging")
     debug()
 
+    
     
 
     
