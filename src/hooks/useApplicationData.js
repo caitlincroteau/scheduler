@@ -37,12 +37,14 @@ export default function useApplicationData() {
   }, []);
 
 
-  const updateSpots= function(id, addition=false) {
+  const updateSpots= function(id, addition=false, edit=false) {
     const newDays = [
       ...state.days
     ]
     // console.log("days in update spots before", newDays)
-
+    if(edit) {
+      return newDays
+    }
     //loop through days array to find day object that contains target appointment id
     for (const d of newDays) {
       //Book Interview: when you find the day with target appointment id, subtract one from remaining spots
@@ -54,15 +56,39 @@ export default function useApplicationData() {
       if (d.appointments.includes(id) && !addition) {
         d.spots = d.spots + 1;
         // console.log("found it - days at d after", d)
-      }  
+      } 
+
     }
       // console.log("days after", newDays)
     return newDays;
   }
 
+  // const updateSpots= function(id, appointments) {
+  //   const newDays = [
+  //     ...state.days
+  //   ]
+  //   // console.log("days in update spots before", newDays)
+
+  //   //loop through days array to find day object that contains target appointment id
+  //   for (const d of newDays) {
+  //     //Book Interview: when you find the day with target appointment id, subtract one from remaining spots
+  //     if (d.appointments.includes(id)) {
+
+  //       d.spots = d.spots - 1;
+  //       // console.log("found it - days at d after", d)
+  //     }
+  //     //Cancel Interview: when you find the day with target appointment id, add one to remaining spots
+  //     if (d.appointments.includes(id) && !addition) {
+  //       d.spots = d.spots + 1;
+  //       // console.log("found it - days at d after", d)
+  //     }  
+  //   }
+  //     // console.log("days after", newDays)
+  //   return newDays;
+  // }
 
   function bookInterview(id, interview) {
-    // console.log("id", id, " interview", interview);
+    console.log("id", id, " interview", interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -72,7 +98,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const days = updateSpots(id, true);
+    const days = updateSpots(id, true, state.appointments[id].interview);
     // console.log("days in book interview", days)
 
     //see setState below: we must do ...state first in order to keep the previous state info eg day, days, interviewers

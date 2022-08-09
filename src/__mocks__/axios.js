@@ -82,14 +82,14 @@ export default {
     }
   }),
 
-  put: jest.fn((url, appointment) => {
+  put: jest.fn((url) => {
     return Promise.resolve({
       status: 204,
       statusText: "No Content"
     });
   }),
 
-  delete: jest.fn((url, appointment) => {
+  delete: jest.fn((url) => {
     return Promise.resolve({
       status: 204,
       statusText: "No Content"
