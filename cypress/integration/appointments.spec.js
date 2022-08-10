@@ -8,7 +8,7 @@ describe("Appointments", () => {
     cy.contains("Monday");
   })
 
-  it("should book an interview", () => {
+  xit("should book an interview", () => {
     cy.get('[alt="Add"]')
       .first()
       .click();
@@ -22,6 +22,22 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Sylvia Palmer");
   });
+
+  it("should edit an interview", () => {
+    cy.get('[alt="Edit"]')
+    .first()
+    .click({ force: true });
+
+    cy.get('[data-testid="student-name-input"]')
+      .clear()
+      .type("Caitlin Croteau");
+    cy.get('[alt="Tori Malcolm"]').click();
+
+    cy.contains("Save"). click();
+
+    cy.contains(".appointment__card--show", "Caitlin Croteau");
+    cy.contains(".appointment__card--show", "Tori Malcolm");
+  })
 });
 
 /*Booking:
@@ -30,6 +46,13 @@ Clicks on the "Add" button in the second appointment
 Enters their name
 Chooses an interviewer
 Clicks the save button
-Sees the booked appointment*/
+Sees the booked appointment
+
+Editing:
+Visits the root of our web server
+Clicks the edit button for the existing appointment
+Changes the name and interviewer
+Clicks the save button
+Sees the edit to the appointment*/
 
 /*Before Each: reset db, visit root, ensure data loads */
