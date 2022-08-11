@@ -1,8 +1,7 @@
 import React from "react";
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, waitForElementToBeRemoved, queryByText, queryByAltText, getByPlaceholderText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, queryByText, queryByAltText, getByPlaceholderText } from "@testing-library/react";
 import axios from "axios";
 import Application from "components/Application";
-import { debug } from "request";
 
 
 beforeEach(cleanup);
@@ -191,7 +190,7 @@ describe("Application", () => {
     
     fireEvent.click(getByAltText(appointment, "Close"));
 
-    expect(getByText(container, "Archie Cohen")).toBeInTheDocument;
+    expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
    
   });
 
@@ -246,7 +245,7 @@ describe("Application", () => {
     
 
     fireEvent.click(getByAltText(appointment, "Close"));
-    expect(getByText(container, "Archie Cohen")).toBeInTheDocument;
+    expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
   });
 
 });
