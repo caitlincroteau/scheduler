@@ -113,7 +113,9 @@ export default function useApplicationData() {
       .put(url, appointment)
       .then(response => {
         // console.log('response', response)
-        setState({...state, appointments, days});
+        setState((prev) => {
+          return {...prev, appointments, days}
+        });
         // console.log("updated appointments, days", state.appointments, state.days)
         
       });
@@ -143,7 +145,9 @@ export default function useApplicationData() {
       .then(response => {
         // console.log('reponse', response);
         //to setState, copy all existing state data with spread, then replace appointments object with new appointments object
-        setState({...state, appointments, days});
+        setState((prev) => {
+          return {...prev, appointments, days}
+        });
       });
   }
   return {state, setDay, bookInterview, cancelInterview}
