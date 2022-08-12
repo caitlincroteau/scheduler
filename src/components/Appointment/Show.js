@@ -4,7 +4,6 @@ export default function Show(props) {
 
   const { student, interviewer, onEdit, onDelete } = props;
 
-
   //for delete button
   const cancel = function() {
     onDelete();

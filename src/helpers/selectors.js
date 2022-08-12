@@ -1,9 +1,27 @@
+//helper function for getAppointmentsForDay/getInterviewersForDay
+const getIds = function(state, day) {
+  let appointmentIds = [];
+  let interviewerIds = [];
+
+  //loop objects in state.days array
+  // to find appointmentIds and interviewerIds array for target 'day'
+  for (const e of state.days) {
+    if (e.name === day){
+      appointmentIds.push(...e.appointments);
+      interviewerIds.push(...e.interviewers);
+    }  
+  }
+
+  return [appointmentIds, interviewerIds];
+}
+
+
 export function getAppointmentsForDay(state, day) {
   const result = [];
   const [appointmentIds, interviewerIds] = getIds(state, day);
   
   //loop through appointmentIds array for target day,
-  //find corresponding id/object in state.appointments object, and add it to results array
+  //find corresponding id/object in state.appointments object and add it to results array
   if (appointmentIds.length !== 0) {
     for (const id of appointmentIds) {
       result.push(state.appointments[id]);
@@ -12,6 +30,7 @@ export function getAppointmentsForDay(state, day) {
   
   return result;
 }
+
 
 export function getInterviewersForDay(state, day) {
   const result = [];
@@ -26,23 +45,6 @@ export function getInterviewersForDay(state, day) {
   }
   
   return result;
-}
-
-//helper function for getAppointmentsForDay/getInterviewersForDay
-const getIds = function(state, day) {
-  let appointmentIds = [];
-  let interviewerIds = [];
-
-  //loop objects in state.days array
-  // to find appointmentIds and interviewerIds array for target 'day'
-  for (const e of state.days) {
-    if (e.name === day){
-      appointmentIds.push(...e.appointments);
-      interviewerIds.push(...e.interviewers);
-    }  
-  }
- 
-  return [appointmentIds, interviewerIds];
 }
 
 

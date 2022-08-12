@@ -27,7 +27,6 @@ export default function Appointment(props) {
     interview ? SHOW : EMPTY
   );
 
-  // console.log("interviewer", interview.interviewer.id)
   //create new interview object and update db and state
   function save(name, interviewer) {
     const interview = {
@@ -45,19 +44,11 @@ export default function Appointment(props) {
   //delete interview
   function cancel() {
     transition(DELETING, true);
-    // console.log('id in index', id)
-
+  
     cancelInterview(id)
     .then(() => transition(EMPTY))
     .catch(error => transition(ERROR_DELETE, true));
   }
-
-  // function edit() {
-  //   transition(EDIT)
-  //   // console.log('interviewers', interviewers)
-  //   // console.log('interview', interview.interviewer)
-  // }
-
   
 
   return (

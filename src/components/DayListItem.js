@@ -33,5 +33,3 @@ export default function DayListItem(props) {
     </li>
   );
 }
-
-//does props.selected need to be there??
