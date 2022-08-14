@@ -1,8 +1,8 @@
 # Interview Scheduler
 
-Interview Scheduler is a single-page application for booking appointments. It allows students to book and manage interviews with mentors. Appointments can be made between 12pm and 5pm, Monday through Friday. Students can update an existing appointment by editing the student name or by changing the selected interviewer. Students also have the ability to delete a booked appointment.
+Interview Scheduler is a single-page application (SPA) that allows users to book technical interviews between students and mentors. Appointments can be between the hours of 12 PM and 5 PM, Monday to Friday. Each appointment has one student and one interviewer. When creating a new appointment, the user can enter any student name while the interviewer is chosen from a predefined list. The user can save the appointment and view the entire schedule of appointments on any day of the week. Appointments can also be edited or deleted. 
 
-The front-end of this app was built using React. Data for this app is accesed via the [Scheduler-API](https://github.com/lighthouse-labs/scheduler-api) server, which you must set up separately.
+The front end of this project is built with React and makes requests to an API to fetch and store appointment data from a database. Sample data for this app can be accesed via the [Scheduler-API](https://github.com/lighthouse-labs/scheduler-api) server, which you must set up separately.
 
 This project was completed as part of the Full Stack Web Development bootcamp at [Lighthouse Labs](http://www.lighthouselabs.ca).
 
