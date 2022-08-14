@@ -5,6 +5,8 @@ Interview Scheduler is a single-page application for booking appointments. It al
 The front-end of this app was built using React. Data for this app is accesed via the [Scheduler-API](https://github.com/lighthouse-labs/scheduler-api) server, which you must set up separately.
 
 This project was completed as part of the Full Stack Web Development bootcamp at [Lighthouse Labs](http://www.lighthouselabs.ca).
+
+!["Interview Scheduler]()
 ## Setup
 
 - Create a new repository using this one as a template, and clone it onto your local device.
@@ -31,8 +33,10 @@ npm start
 
 ## 
 ## Creating an appointment
+!["Creating an appointment"](https://github.com/caitlincroteau/scheduler/blob/master/docs/interview-scheduler-ADD.gif)
 
 ## Editing and deleting an appointment
+!["Editing an appointment"](https://github.com/caitlincroteau/scheduler/blob/master/docs/interview-schedulerEDIT-DELETE.gif)
 
 ## Testing
 ### Running Jest Test Framework
