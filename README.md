@@ -6,7 +6,7 @@ The front-end of this app was built using React. Data for this app is accesed vi
 
 This project was completed as part of the Full Stack Web Development bootcamp at [Lighthouse Labs](http://www.lighthouselabs.ca).
 
-!["Interview Scheduler]()
+!["Interview Scheduler](https://github.com/caitlincroteau/scheduler/blob/master/docs/interview-scheduler.png)
 ## Setup
 
 - Create a new repository using this one as a template, and clone it onto your local device.
