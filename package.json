@@ -1,6 +1,8 @@
 {
   "proxy": "http://localhost:8001/",
   "name": "scheduler",
+  "author": "Caitlin Croteau",
+  "description": "Single-page application for booking appointments",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
